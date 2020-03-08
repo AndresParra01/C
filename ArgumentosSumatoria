@@ -1,0 +1,42 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+
+ int main(int argc, char* argv[])
+{
+	int datos[argc-1];
+        int sumatoria = 0;
+        float promedio = 0;
+	int contador = 0;	
+	int rel;
+	for(int i = 1; i < argc; i++)
+	{
+		rel = sscanf(argv[i],"%d",&datos[i-1]);
+		if(rel == 1)
+		{
+			contador++;
+			sumatoria = sumatoria + datos[i-1];
+		}
+	}
+
+	
+	promedio = sumatoria/contador;
+	printf("El promedio es: %.2f", promedio);
+
+	int max = datos[0];
+	int min = datos[0];
+
+	for(int i = 0; i < contador; i++)
+	{
+		if(datos[i] > max)
+		{
+			max = datos[i];
+		}
+
+		if(datos[i] < min) 
+		{
+			min = datos[i];
+		} 
+	} 
+
+	printf("El maximo es %d y el minimo es %d", max, min);
+}
