@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+char ARCHIVOORIGEN[50];
+
+int main()
+{
+    FILE ptroArchivo;
+    int ch;
+    char ind;
+    
+    int tamArchivo = 0;
+    
+    printf("Ingrese el nombre del archivo: \n");
+    scanf("%s", &ARCHIVOORIGEN);
+    
+    for(int i = 0; i < 50; i++)
+    {
+        while(ARCHIVOORIGEN[i] != "\n")
+        {
+        tamArchivo++;
+        if(ARCHIVOORIGEN[i] == "\n")
+        {
+            ARCHIVOORIGEN[tamArchivo] = NULL;
+            break;
+        }
+        }
+    }
+    
+    printf("Ingreso el archivo: %s de %d caracteres", ARCHIVOORIGEN, tamArchivo);
+    
+    return 0;
+}
