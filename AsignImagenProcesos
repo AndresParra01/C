@@ -1,0 +1,65 @@
+ #include<stdio.h>
+ #include<stdlib.h>
+ #include<unistd.h>
+ int main(int argc, char* argv[])
+ {
+	 pid_t pid_sumatoria, pid_minimo, pid_maximo;
+
+         char *args[]={"./Sumatoria", "./Minimo", "./Maximo", NULL};
+
+	 pid_sumatoria = fork();
+
+	 switch(pid_sumatoria)
+     {
+	 case -1:
+       		 printf("Error al crear el proceso sumatoria\n");
+       		 return -1;
+     	 case 0:
+         	 printf("Proceso hijo sumatoria creado\n");
+	         execv(args[0],args);
+		 return 0;
+     		 break;
+     	 default:
+        	printf("Proceso padre: Proceso hijo 1 creado\n");
+     }
+        wait(NULL);
+
+         pid_minimo = fork();
+
+	 switch(pid_minimo)
+     {
+         case -1:
+                 printf("Error al crear el proceso minimo\n");
+                 return -1;
+         case 0:
+                 printf("Proceso hijo minimo creado\n");
+                 execv(args[1],args); 
+                 return 0;
+                 break;
+         default:
+                printf("Proceso padre: Proceso hijo 2 creado\n");
+     }
+
+	wait(NULL);
+
+         pid_maximo = fork();
+
+         switch(pid_maximo)
+     {
+         case -1:
+                 printf("Error al crear el proceso maximo\n");
+                 return -1;
+         case 0:
+                 printf("Proceso hijo maximo creado\n");
+                 execv(args[2],args); 
+                 return 0;
+                 break;
+         default:
+                printf("Proceso padre: Proceso hijo 3 creado\n");
+     }
+
+	wait(NULL);
+
+
+     return 0;
+ }
